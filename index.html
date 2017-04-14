@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World! Press open a bunch of times then close all of the sub-windows and you'll see memory leaks in the renderer process.</h1>
+    <button id='open'>open</button>
+  </body>
+
+  <script>
+    var button = document.getElementById('open');
+    button.addEventListener('click', function() {
+        window.open('./index.html');
+    });
+
+    // alloc a big chunk of memory to see memory leak in window.open
+    var bigMemory = new Array(10000000);
+    for(var i = 0; i < bigMemory.lenth -1; i++) {
+        bigMemory[i] = i;
+    }
+   </script>
+</html>
